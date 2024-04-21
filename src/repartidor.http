@@ -1,0 +1,28 @@
+### obtener todos los characters 
+GET http://localhost:3000/api/repartidores
+
+###
+GET http://localhost:3000/api/repartidores/123456
+
+###
+POST http://localhost:3000/api/repartidores
+Content-Type: application/json
+
+{
+    "nroDoc": 45678,
+    "vehiculo": "Nave",
+    "zona": "Oeste"
+}
+
+### modificar un character (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/repartidores/123456
+Content-Type: application/json
+
+{
+  "nroDoc": 123456,
+  "vehiculo": "Banana voladora",
+  "zona": "Norte"  
+}
+
+### borrar un character
+DELETE http://localhost:3000/api/repartidores/123456
