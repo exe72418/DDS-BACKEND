@@ -1,0 +1,42 @@
+### obtener todos los clientes
+GET http://localhost:3000/api/clientes
+
+
+### obtener un cliente
+GET http://localhost:3000/api/clientes/12345
+
+### crear un nuevo cliente
+POST http://localhost:3000/api/clientes
+Content-Type: application/json
+
+{
+  "CUIT": "6789",
+  "apellidoNombre": "CR7",
+  "telefono": 325135135,
+  "email": "ewfawefaewf@gmail.com",
+  "domicilio": "adsfadsf 345"
+}
+
+### modificar un cliente (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/clientes/6789
+Content-Type: application/json
+
+{
+  "CUIT": "6789",
+  "apellidoNombre": "Cristiano Ronaldo",
+  "telefono": 34135135,
+  "email": "cristiano.Ronaldo@gmail.com",
+  "domicilio": "Portugal 456"
+}
+
+### modificar un cliente (PATCH - recurso parcial)
+PATCH http://localhost:3000/api/clientes/6789
+Content-Type: application/json
+
+{
+  "email": "cristiano.Ronaldo@al-nassar.com",
+  "domicilio": "AV Portugal 456"
+}
+
+### borrar un cliente
+DELETE http://localhost:3000/api/clientes/6789
