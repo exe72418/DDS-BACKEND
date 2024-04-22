@@ -5,8 +5,8 @@ import { repartidorRouter } from './routes/repartidorRourtes.js'
 const app = express()
 app.use(express.json())
 
-app.use('/api/clientes', clienteRouter)
-app.use('/api/repartidores',repartidorRouter)
+app.use('/api/v1/clientes', clienteRouter)
+app.use('/api/v1/repartidores',repartidorRouter)
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'No se encontro la ruta' })
