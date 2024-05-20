@@ -1,8 +1,19 @@
+import { Producto } from "./producto";
+
 export class LineaDeProducto {
+
+    cantidad!:number;
+    subtotal!:number;
+    producto!:Producto;
+
     constructor (
-        public producto: string,
-        public cantidad: number,
-        public subtotal: number,
-    ) {}
+        producto: Producto,
+        cantidad: number,
+        subtotal: number,
+    ) {
+        this.cantidad = cantidad;
+        this.subtotal = subtotal;
+        this.producto = producto;
+    }
   }
   

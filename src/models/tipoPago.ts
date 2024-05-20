@@ -1,7 +1,14 @@
 export class TipoPago {
+
+    codigoTipoPago!:number;
+    nombre!:string;
+    descripcion!:string;
+
     constructor(
-        public codigo: string,
-        public nombre: string,
-        public descripcion: number,
-      ) { }
+      nombre: string,
+      descripcion: string,
+      ) {
+        this.nombre=nombre;
+        this.descripcion=descripcion;
+       }
 }

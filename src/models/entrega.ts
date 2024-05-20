@@ -1,8 +1,21 @@
+import { Repartidor } from "./repartidor";
+
 export class Entrega {
+
+    fecha!:Date;
+    lote!:string;
+    zona!:string;
+    repartidor!:Repartidor;
+
     constructor (
-        public fecha: Date,
-        public lote: string,
-        public zona: string,
+        fecha: Date,
+        lote: string,
+        zona: string,
+        repartidor:Repartidor
     ) {
+        this.fecha = fecha;
+        this.lote= lote;
+        this.zona = zona;
+        this.repartidor = repartidor;
     }
 }

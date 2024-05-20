@@ -1,9 +1,16 @@
+import { TipoPago } from "./tipoPago";
+
 export class Pago {
 
-    id!: number;
-    codigo!: string;
+    idPago!: number;
     fecha!: Date;
+    tipoPago!:TipoPago;
 
-    constructor() {
+    constructor(
+        fecha:Date,
+        tipoPago:TipoPago
+    ) {
+        this.fecha=fecha;
+        this.tipoPago=tipoPago;
     }
 }

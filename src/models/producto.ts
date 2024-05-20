@@ -1,12 +1,22 @@
-import { LineaDePedido } from "./lineaDeProducto";
+import { TipoProducto } from "./tipoProducto";
 
 export class Producto {
-    constructor (
-        public codigo: number,
-        public descripcion: string,
-        public precio: number,
-        public stock: number,
-    ) {
 
+    codigoProducto!:number;
+    descripcion!:string;
+    stock!:number;
+    precio!:number;
+    tipoProducto!:TipoProducto;
+
+    constructor (
+        descripcion: string,
+        precio: number,
+        stock: number,
+        tipoProducto:TipoProducto
+    ) {
+        this.descripcion=descripcion;
+        this.stock=stock;
+        this.precio=precio;
+        this.tipoProducto=tipoProducto;
     }
 }

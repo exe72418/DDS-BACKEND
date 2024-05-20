@@ -1,6 +1,11 @@
 export class TipoProducto {
+
+    idTipoProducto!:number;
+    nombre!:string;
+
     constructor(
-        public id: number,
-        public nombre: string,
-    ){}
+        nombre: string,
+    ){
+        this.nombre=nombre;
+    }
 }
