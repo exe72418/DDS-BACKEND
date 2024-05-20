@@ -1,4 +1,4 @@
-import { Cliente } from '../models/clienteModel.js';
+import { Cliente } from '../models/cliente.js';
 import { Repository } from '../shared/repository.js';
 
 const clientes = [

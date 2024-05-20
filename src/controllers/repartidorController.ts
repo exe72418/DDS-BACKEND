@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { RepartidorRepository } from "../dataAccess/repartidorRepository.js";
-import { Repartidor } from '../models/Repartidor.js';
+import { Repartidor } from '../models/repartidor.js';
 
 const repository = new RepartidorRepository()
 

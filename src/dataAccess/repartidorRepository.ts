@@ -1,4 +1,4 @@
-import { Repartidor } from "../models/Repartidor.js";
+import { Repartidor } from "../models/repartidor.js";
 import { Repository } from "../shared/repository";
 
 const repartidores: Repartidor[] = [
