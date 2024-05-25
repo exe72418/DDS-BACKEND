@@ -1,4 +1,4 @@
-import { Cliente } from '../models/cliente.js';
+import { Cliente } from '../models/cliente.entity.js';
 import { Repository } from '../shared/repository.js';
 
 const clientes = [
@@ -17,8 +17,8 @@ export class ClienteRepository implements Repository<Cliente> {
     return clientes
   }
 
-  public findOne(item: { CUIT: string; }): Cliente | undefined {
-    return clientes.find((cliente) => cliente.CUIT === item.CUIT)
+  public findOne(item: { cuit: string; }): Cliente | undefined {
+    return clientes.find((cliente) => cliente.cuit === item.cuit)
   }
 
   public add(item: Cliente): Cliente | undefined {
@@ -27,15 +27,15 @@ export class ClienteRepository implements Repository<Cliente> {
   }
 
   public update(item: Cliente): Cliente | undefined {
-    const clienteIdx = clientes.findIndex((cliente) => cliente.CUIT === item.CUIT)
+    const clienteIdx = clientes.findIndex((cliente) => cliente.cuit === item.cuit)
 
     if (clienteIdx !== -1) {
       Object.assign(clientes[clienteIdx], item)
     }
     return clientes[clienteIdx]
   }
-  public delete(item: { CUIT: string; }): Cliente | undefined {
-    const clienteIdx = clientes.findIndex((cliente) => cliente.CUIT === item.CUIT)
+  public delete(item: { cuit: string; }): Cliente | undefined {
+    const clienteIdx = clientes.findIndex((cliente) => cliente.cuit === item.cuit)
     if (clienteIdx !== -1) {
       const clienteBorrado = clientes[clienteIdx]
       clientes.splice(clienteIdx, 1)

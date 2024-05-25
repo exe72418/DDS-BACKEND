@@ -1,7 +1,12 @@
-export class TipoPago {
+import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 
+@Entity()
+export class TipoPago {
+    @PrimaryKey()
     codigoTipoPago!:number;
+    @Property()
     nombre!:string;
+    @Property()
     descripcion!:string;
 
     constructor(

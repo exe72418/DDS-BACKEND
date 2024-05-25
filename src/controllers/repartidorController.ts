@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { RepartidorRepository } from "../dataAccess/repartidorRepository.js";
-import { Repartidor } from '../models/repartidor.js';
+import { Repartidor } from '../models/repartidor.entity.js';
 
 const repository = new RepartidorRepository()
 
@@ -28,7 +28,7 @@ function findAll(req: Request, res: Response) {
   
 function findOne(req: Request, res: Response) {
   
-    const repartidor = repository.findOne({ nroDoc: parseInt(req.params.nroDoc) })
+    const repartidor = repository.findOne({ cuit: parseInt(req.params.nroDoc) })
     if (!repartidor) {
       return res.status(404).send({ message: 'No se encontro el repartidor' })
     }
@@ -64,7 +64,7 @@ function update(req: Request, res: Response) {
   
   function remove(req: Request, res: Response) {
   
-    const repartidor = repository.delete({ nroDoc: parseInt(req.params.nroDoc) })
+    const repartidor = repository.delete({ cuit: parseInt(req.params.nroDoc) })
   
     if (!repartidor) {
       res.status(404).send({ message: 'no se encontro el repartidor!' })

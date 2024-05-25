@@ -1,4 +1,4 @@
-import { Repartidor } from "../models/repartidor.js";
+import { Repartidor } from "../models/repartidor.entity.js";
 import { Repository } from "../shared/repository";
 
 const repartidores: Repartidor[] = [
@@ -12,8 +12,8 @@ export class RepartidorRepository implements Repository<Repartidor>{
     public findAll(): Repartidor[] | undefined {
         return repartidores
     }
-    public findOne(item: {nroDoc:number}): Repartidor | undefined {
-        return repartidores.find((repartidor) => repartidor.nroDoc === item.nroDoc)
+    public findOne(item: {cuit:number}): Repartidor | undefined {
+        return repartidores.find((repartidor) => repartidor.cuit === item.cuit)
     }
     public add(item: Repartidor): Repartidor | undefined {
         repartidores.push(item);
@@ -31,21 +31,21 @@ export class RepartidorRepository implements Repository<Repartidor>{
             repartidores[index] = { ...repartidores[index], ...item }
             return item;
         } */
-        console.log(item.nroDoc)
+        console.log(item.cuit)
         const repartidorIdx = repartidores.findIndex((rep) => {
-            console.log(rep.nroDoc + ' y ' + item.nroDoc)
-            return rep.nroDoc.toString() === item.nroDoc.toString()
+            console.log(rep.cuit + ' y ' + item.cuit)
+            return rep.cuit.toString() === item.cuit.toString()
         })
         console.log(repartidorIdx)
 
         if (repartidorIdx !== -1) {
-            item.nroDoc = parseInt(item.nroDoc.toString(),10)
+            item.cuit = parseInt(item.cuit.toString(),10)
           Object.assign(repartidores[repartidorIdx], item)
         }
         return repartidores[repartidorIdx]
     }
-    public delete(item: {nroDoc:number}): Repartidor | undefined {
-        const repartidorIdx = repartidores.findIndex((repartidor)=>repartidor.nroDoc === item.nroDoc)
+    public delete(item: {cuit:number}): Repartidor | undefined {
+        const repartidorIdx = repartidores.findIndex((repartidor)=>repartidor.cuit === item.cuit)
 
         if(repartidorIdx !== -1){
             const repartidorBorrado = repartidores[repartidorIdx]
