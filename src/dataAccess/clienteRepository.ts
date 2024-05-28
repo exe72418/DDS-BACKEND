@@ -3,7 +3,7 @@ import { Repository } from '../shared/repository.js';
 
 const clientes = [
   new Cliente(
-    '12345',
+    12345,
     'Leonel Andres Messi',
     341432642,
     'leo.messi@gmail.com',
@@ -17,7 +17,7 @@ export class ClienteRepository implements Repository<Cliente> {
     return clientes
   }
 
-  public findOne(item: { cuit: string; }): Cliente | undefined {
+  public findOne(item: { cuit: number; }): Cliente | undefined {
     return clientes.find((cliente) => cliente.cuit === item.cuit)
   }
 
@@ -34,7 +34,7 @@ export class ClienteRepository implements Repository<Cliente> {
     }
     return clientes[clienteIdx]
   }
-  public delete(item: { cuit: string; }): Cliente | undefined {
+  public delete(item: { cuit: number; }): Cliente | undefined {
     const clienteIdx = clientes.findIndex((cliente) => cliente.cuit === item.cuit)
     if (clienteIdx !== -1) {
       const clienteBorrado = clientes[clienteIdx]

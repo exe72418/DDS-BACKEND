@@ -8,7 +8,7 @@ export class Entrega {
     fecha!:Date;
 
     @PrimaryKey()
-    lote!:string;
+    lote!:number;
 
       // this is needed for proper type checks in `FilterQuery`
     [PrimaryKeyProp]?: ['fecha', 'lote'];
@@ -21,7 +21,7 @@ export class Entrega {
 
     constructor (
         fecha: Date,
-        lote: string,
+        lote: number,
         zona: string,
         repartidor:Repartidor
     ) {

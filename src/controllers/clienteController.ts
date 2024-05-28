@@ -29,7 +29,7 @@ function findAll(req: Request, res: Response) {
 
 function findOne(req: Request, res: Response) {
 
-  const cliente = repository.findOne({ cuit: req.params.CUIT })
+  const cliente = repository.findOne({ cuit: parseInt(req.params.CUIT) })
   if (!cliente) {
     return res.status(404).send({ message: 'No se encontro el cliente' })
   }
@@ -66,7 +66,7 @@ function update(req: Request, res: Response) {
 
 function remove(req: Request, res: Response) {
 
-  const cliente = repository.delete({ cuit: req.params.CUIT })
+  const cliente = repository.delete({ cuit: parseInt(req.params.CUIT) })
 
   if (!cliente) {
     res.status(404).send({ message: 'no se encontro el cliente!' })

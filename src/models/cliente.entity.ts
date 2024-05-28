@@ -4,7 +4,7 @@ import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 export class Cliente {
   
   @PrimaryKey()
-  cuit!: string;
+  cuit!: number;
 
   @Property()
   apellidoNombre!: string;
@@ -22,7 +22,7 @@ export class Cliente {
   zona!:string;
 
   constructor(
-    cuit:string,
+    cuit:number,
     apellidoNombre: string,
     telefono: number,
     email: string,
