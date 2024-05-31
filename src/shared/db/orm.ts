@@ -1,8 +1,6 @@
 import { MikroORM } from '@mikro-orm/core'
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter'
 
-
-
 export const orm = await MikroORM.init({
   entities: ['dist/models/**/*.entity.js'],
   entitiesTs: ['src/models/**/*.entity.ts'],

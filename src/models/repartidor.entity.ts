@@ -13,9 +13,9 @@ export class Repartidor {
     @OneToMany(() => Entrega, (entrega) => entrega.repartidor, { cascade: [Cascade.ALL], })
     entregas = new Collection<Entrega>(this)
 
-    constructor(nroDoc: number, vehiculo: String, zona: String) {
+    /*constructor(nroDoc: number, vehiculo: String, zona: String) {
         this.cuit = nroDoc
         this.vehiculo = vehiculo
         this.zona = zona
-    }
+    }*/
 }

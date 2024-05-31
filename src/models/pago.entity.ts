@@ -16,11 +16,11 @@ export class Pago {
     @ManyToOne(() => Pedido, { nullable: false })
     pedido!: Rel<Pedido>;
 
-    constructor(
+    /*constructor(
         fecha: Date,
         tipoPago: TipoPago
     ) {
         this.fecha = fecha;
         this.tipoPago = tipoPago;
-    }
+    }*/
 }

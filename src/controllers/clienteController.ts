@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { Cliente } from '../models/cliente.entity.js'
-import { ClienteRepository } from '../dataAccess/clienteRepository.js'
 
-const repository = new ClienteRepository
 
 function sanitizeClienteInput(req: Request, res: Response, next: NextFunction) {
 
@@ -23,56 +21,28 @@ function sanitizeClienteInput(req: Request, res: Response, next: NextFunction) {
   next()
 }
 
-function findAll(req: Request, res: Response) {
-  res.json(res.json({ data: repository.findAll() }))
+async function findAll(req: Request, res: Response) {
+  res.status(500).json({ message: 'Not Implemented' })
 }
 
-function findOne(req: Request, res: Response) {
+async function findOne(req: Request, res: Response) {
 
-  const cliente = repository.findOne({ cuit: parseInt(req.params.CUIT) })
-  if (!cliente) {
-    return res.status(404).send({ message: 'No se encontro el cliente' })
-  }
-
-  res.json({ data: cliente })
+  res.status(500).json({ message: 'Not Implemented' })
 }
 
-function add(req: Request, res: Response) {
-  const input = req.body.sanitizedInput
+async function add(req: Request, res: Response) {
 
-  const clienteInput = new Cliente(
-    input.CUIT,
-    input.apellidoNombre,
-    input.telefono,
-    input.email,
-    input.domicilio)
-
-  const cliente = repository.add(clienteInput)
-  return res.status(201).send({ message: 'Se dio de alta el cliente', data: cliente })
+  res.status(500).json({ message: 'Not Implemented' })
 }
 
-function update(req: Request, res: Response) {
+async function update(req: Request, res: Response) {
 
-  req.body.sanitizedInput.CUIT = req.params.CUIT
-  const cliente = repository.update(req.body.sanitizedInput)
-
-  if (!cliente) {
-    return res.status(404).send({ message: 'no se encontro el cliente' })
-  }
-
-  return res.status(200).send({ message: 'el cliente fue actualizado', data: cliente })
+  res.status(500).json({ message: 'Not Implemented' })
 }
 
+async function remove(req: Request, res: Response) {
 
-function remove(req: Request, res: Response) {
-
-  const cliente = repository.delete({ cuit: parseInt(req.params.CUIT) })
-
-  if (!cliente) {
-    res.status(404).send({ message: 'no se encontro el cliente!' })
-  } else {
-    res.status(200).send({ message: 'cliente borrado correctamente', data: cliente })
-  }
+  res.status(500).json({ message: 'Not Implemented' })
 }
 
 export { sanitizeClienteInput, findAll, findOne, add, update, remove }

@@ -20,10 +20,10 @@ export class Entrega {
     @ManyToOne({ entity: () => Repartidor, nullable: true })
     repartidor!: Rel<Repartidor>;
 
-    @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], })
+    @OneToMany(() => Pedido, (pedido) => pedido.entrega, { cascade: [Cascade.ALL], })
     pedidos = new Collection<Pedido>(this)
 
-    constructor(
+    /*constructor(
         fecha: Date,
         lote: number,
         zona: string,
@@ -33,5 +33,6 @@ export class Entrega {
         this.lote = lote;
         this.zona = zona;
         this.repartidor = repartidor;
-    }
+    }*/
+
 }

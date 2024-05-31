@@ -19,7 +19,7 @@ export class LineaDeProducto {
     @ManyToOne(() => Pedido, { nullable: false })
     pedido!: Rel<Pedido>;
 
-    constructor(
+    /*constructor(
         producto: Producto,
         cantidad: number,
         subtotal: number,
@@ -27,5 +27,5 @@ export class LineaDeProducto {
         this.cantidad = cantidad;
         this.subtotal = subtotal;
         this.producto = producto;
-    }
+    }*/
 }

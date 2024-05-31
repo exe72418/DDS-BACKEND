@@ -18,7 +18,7 @@ export class Producto {
     @OneToMany(() => LineaDeProducto, (lineaDeProducto) => lineaDeProducto.producto, { cascade: [Cascade.ALL], })
     lineas = new Collection<LineaDeProducto>(this)
 
-    constructor(
+    /*constructor(
         descripcion: string,
         precio: number,
         stock: number,
@@ -28,5 +28,5 @@ export class Producto {
         this.stock = stock;
         this.precio = precio;
         this.tipoProducto = tipoProducto;
-    }
+    }*/
 }

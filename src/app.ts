@@ -20,7 +20,7 @@ app.use((_, res) => {
   return res.status(404).send({ message: 'No se encontro la ruta' })
 })
 
-await syncSchema()
+//await syncSchema() no descomentar, el esquema ya esta creado
 
 app.listen(3000, () => {
   console.log("Server corriendo en la ruta http://localhost:3000/")

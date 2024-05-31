@@ -25,7 +25,7 @@ export class Cliente {
   @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], })
   pedidos = new Collection<Pedido>(this)
 
-  constructor(
+  /*constructor(
     cuit: number,
     apellidoNombre: string,
     telefono: number,
@@ -37,5 +37,5 @@ export class Cliente {
     this.telefono = telefono;
     this.email = email;
     this.domicilio = domicilio;
-  }
+  }*/
 }
