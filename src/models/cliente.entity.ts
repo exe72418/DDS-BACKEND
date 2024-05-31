@@ -22,20 +22,22 @@ export class Cliente {
   @Property()
   zona!: string;
 
-  @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], })
-  pedidos = new Collection<Pedido>(this)
+  @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], joinColumn: 'nroPedido', inverseJoinColumn: 'cuit'  })
+  pedidos = new Collection<Pedido>(this);
 
-  /*constructor(
+  constructor(
     cuit: number,
     apellidoNombre: string,
     telefono: number,
     email: string,
     domicilio: string,
-  ) {
+    pedidos: Collection<Pedido>
+    ) {
     this.cuit = cuit
     this.apellidoNombre = apellidoNombre;
     this.telefono = telefono;
     this.email = email;
     this.domicilio = domicilio;
-  }*/
+    this.pedidos = pedidos
+  }
 }
