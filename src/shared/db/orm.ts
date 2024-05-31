@@ -1,6 +1,8 @@
 import { MikroORM } from '@mikro-orm/core'
 import { SqlHighlighter } from '@mikro-orm/sql-highlighter'
 
+
+
 export const orm = await MikroORM.init({
   entities: ['dist/models/**/*.entity.js'],
   entitiesTs: ['src/models/**/*.entity.ts'],
@@ -19,9 +21,9 @@ export const orm = await MikroORM.init({
 
 export const syncSchema = async () => {
   const generator = orm.getSchemaGenerator()
-  /*   
-  await generator.dropSchema()*/
+
+  // await generator.dropSchema()
   await generator.createSchema() // correrlo por primera ves para que cargue las tablas
-  
+
   //await generator.updateSchema()
 }

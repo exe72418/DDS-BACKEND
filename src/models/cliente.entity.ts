@@ -1,8 +1,9 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, PrimaryKey, Property, OneToMany, Collection, Cascade } from "@mikro-orm/core";
+import { Pedido } from "./pedido.entity.js";
 
 @Entity()
 export class Cliente {
-  
+
   @PrimaryKey()
   cuit!: number;
 
@@ -10,24 +11,27 @@ export class Cliente {
   apellidoNombre!: string;
 
   @Property()
-  telefono!:number;
+  telefono!: number;
 
   @Property()
-  email!:string;
+  email!: string;
 
   @Property()
-  domicilio!:string;
+  domicilio!: string;
 
   @Property()
-  zona!:string;
+  zona!: string;
+
+  @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], })
+  pedidos = new Collection<Pedido>(this)
 
   constructor(
-    cuit:number,
+    cuit: number,
     apellidoNombre: string,
     telefono: number,
     email: string,
     domicilio: string,
-  ) { 
+  ) {
     this.cuit = cuit
     this.apellidoNombre = apellidoNombre;
     this.telefono = telefono;

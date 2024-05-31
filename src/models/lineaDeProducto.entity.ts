@@ -2,24 +2,24 @@ import { Entity, ManyToOne, PrimaryKey, Property, Rel } from "@mikro-orm/core";
 import { Producto } from "./producto.entity.js";
 import { Pedido } from "./pedido.entity.js";
 @Entity()
-export class LineaDeProducto {  
+export class LineaDeProducto {
 
     @PrimaryKey()
-    idLineaProducto!:number;
+    idLineaProducto!: number;
 
     @Property()
-    cantidad!:number;
+    cantidad!: number;
 
     @Property()
-    subtotal!:number;
+    subtotal!: number;
 
     @ManyToOne({ entity: () => Producto, nullable: true })
-    producto!:Producto;
+    producto!: Rel<Producto>;
 
     @ManyToOne(() => Pedido, { nullable: false })
     pedido!: Rel<Pedido>;
 
-    constructor (              
+    constructor(
         producto: Producto,
         cantidad: number,
         subtotal: number,
@@ -28,5 +28,4 @@ export class LineaDeProducto {
         this.subtotal = subtotal;
         this.producto = producto;
     }
-  }
-  
+}

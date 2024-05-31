@@ -1,28 +1,32 @@
-import { Entity, ManyToOne, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, ManyToOne, PrimaryKey, Property, OneToMany, Collection, Cascade, Rel } from "@mikro-orm/core";
 import { TipoProducto } from "./tipoProducto.entity.js";
+import { LineaDeProducto } from "./lineaDeProducto.entity.js";
 
 @Entity()
 export class Producto {
     @PrimaryKey()
-    codigoProducto!:number;
+    codigoProducto!: number;
     @Property()
-    descripcion!:string;
+    descripcion!: string;
     @Property()
-    stock!:number;
+    stock!: number;
     @Property()
-    precio!:number;
+    precio!: number;
     @ManyToOne({ entity: () => TipoProducto, nullable: true })
-    tipoProducto!:TipoProducto;
+    tipoProducto!: Rel<TipoProducto>;
 
-    constructor (
+    @OneToMany(() => LineaDeProducto, (lineaDeProducto) => lineaDeProducto.producto, { cascade: [Cascade.ALL], })
+    lineas = new Collection<LineaDeProducto>(this)
+
+    constructor(
         descripcion: string,
         precio: number,
         stock: number,
-        tipoProducto:TipoProducto
+        tipoProducto: TipoProducto
     ) {
-        this.descripcion=descripcion;
-        this.stock=stock;
-        this.precio=precio;
-        this.tipoProducto=tipoProducto;
+        this.descripcion = descripcion;
+        this.stock = stock;
+        this.precio = precio;
+        this.tipoProducto = tipoProducto;
     }
 }
