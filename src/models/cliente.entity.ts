@@ -5,6 +5,9 @@ import { Pedido } from "./pedido.entity.js";
 export class Cliente {
 
   @PrimaryKey()
+  id?: number
+
+  @Property()
   cuit!: number;
 
   @Property()
@@ -22,7 +25,7 @@ export class Cliente {
   @Property()
   zona!: string;
 
-  @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], joinColumn: 'nroPedido', inverseJoinColumn: 'cuit'  })
+  @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], joinColumn: 'nroPedido', inverseJoinColumn: 'cuit' })
   pedidos = new Collection<Pedido>(this);
 
   constructor(
@@ -32,7 +35,7 @@ export class Cliente {
     email: string,
     domicilio: string,
     pedidos: Collection<Pedido>
-    ) {
+  ) {
     this.cuit = cuit
     this.apellidoNombre = apellidoNombre;
     this.telefono = telefono;

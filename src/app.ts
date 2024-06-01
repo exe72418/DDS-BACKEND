@@ -13,14 +13,14 @@ app.use((_, res, next) => {
   RequestContext.create(orm.em, next)
 })
 
-app.use('/api/v1/clientes', clienteRouter)
+app.use('/api/v2/clientes', clienteRouter)
 app.use('/api/v1/repartidores', repartidorRouter)
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'No se encontro la ruta' })
 })
 
-//await syncSchema() no descomentar, el esquema ya esta creado
+//await syncSchema() //Falta corregir el tema del update, pero mientras no cambiemos las entidades no pasa nada
 
 app.listen(3000, () => {
   console.log("Server corriendo en la ruta http://localhost:3000/")

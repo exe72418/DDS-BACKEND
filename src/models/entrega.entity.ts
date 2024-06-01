@@ -8,13 +8,13 @@ export class Entrega {
     @PrimaryKey()
     fecha!: Date;
 
-    @PrimaryKey()
+    @PrimaryKey({ nullable: false })
     lote!: number;
 
     // this is needed for proper type checks in `FilterQuery`
     [PrimaryKeyProp]?: ['fecha', 'lote'];
 
-    @Property()
+    @Property({ nullable: false })
     zona!: string;
 
     @ManyToOne({ entity: () => Repartidor, nullable: true })

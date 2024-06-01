@@ -1,42 +1,54 @@
 ### obtener todos los clientes
-GET http://localhost:3000/api/clientes
-
-
-### obtener un cliente
-GET http://localhost:3000/api/clientes/12345
+GET http://localhost:3000/api/v2/clientes
 
 ### crear un nuevo cliente
-POST http://localhost:3000/api/clientes
+# @name createCliente
+POST http://localhost:3000/api/v2/clientes
 Content-Type: application/json
 
 {
-  "CUIT": "6789",
-  "apellidoNombre": "CR7",
+  "cuit": 6789,
+  "apellidoNombre": "Messi",
   "telefono": 325135135,
   "email": "ewfawefaewf@gmail.com",
-  "domicilio": "adsfadsf 345"
+  "domicilio": "adsfadsf 345",
+  "zona": "Rosario"
 }
+
+### ID
+@id = {{createCliente.response.body.data.id}}
+
+### obtener un cliente
+GET http://localhost:3000/api/v2/clientes/{{id}}
 
 ### modificar un cliente (PUT - recurso completo e idempotente)
-PUT http://localhost:3000/api/clientes/6789
+PUT http://localhost:3000/api/v2/clientes/{{id}}
 Content-Type: application/json
 
 {
-  "CUIT": "6789",
-  "apellidoNombre": "Cristiano Ronaldo",
+  "cuit": 6789,
+  "apellidoNombre": "Lionel Messi",
   "telefono": 34135135,
-  "email": "cristiano.Ronaldo@gmail.com",
-  "domicilio": "Portugal 456"
+  "email": "Lionel.Messi@gmail.com",
+  "domicilio": "Argentina 456"
 }
 
-### modificar un cliente (PATCH - recurso parcial)
-PATCH http://localhost:3000/api/clientes/6789
+### POST CLIENTE TO DELETE
+# @name createClienteToDelete
+POST http://localhost:3000/api/v2/clientes
 Content-Type: application/json
 
 {
-  "email": "cristiano.Ronaldo@al-nassar.com",
-  "domicilio": "AV Portugal 456"
+  "cuit": 1234,
+  "apellidoNombre": "Cristiano Ronaldo",
+  "telefono": 263975210,
+  "email": "Cristiano.Ronaldo@gmail.com",
+  "domicilio": "Portugal 345",
+  "zona": "Lisboa"
 }
+
+### DELETE
+@idToDelete = {{createClienteToDelete.response.body.data.id}}
 
 ### borrar un cliente
-DELETE http://localhost:3000/api/clientes/6789
+DELETE http://localhost:3000/api/v2/clientes/{{idToDelete}}
