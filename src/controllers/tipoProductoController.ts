@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response } from 'express'
-import { Repartidor } from '../models/repartidor.entity.js'
+import { TipoProducto } from '../models/tipoProducto.entity.js'
 import { orm } from '../shared/db/orm.js'
 
 const em = orm.em
 
 async function findAll(req: Request, res: Response) {
   try {
-    const repartidores = await em.find(Repartidor, {})
+    const tiposDeProducto = await em.find(TipoProducto, {})
     res
       .status(200)
-      .json({ message: 'Se encontraron los repartidores!', data: repartidores })
+      .json({ message: 'Se encontraron los tipos de productos!', data: tiposDeProducto })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -18,10 +18,10 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const RepartidorEncontrado = await em.findOneOrFail(Repartidor, { id })
+    const tipoProductoEncontrado = await em.findOneOrFail(TipoProducto, { id })
     res
       .status(200)
-      .json({ message: 'se encontro el Repartidor!', data: RepartidorEncontrado })
+      .json({ message: 'se encontro el tipo de producto!', data: tipoProductoEncontrado })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -29,9 +29,9 @@ async function findOne(req: Request, res: Response) {
 
 async function add(req: Request, res: Response) {
   try {
-    const repartidor = em.create(Repartidor, req.body)
+    const tipoProducto = em.create(TipoProducto, req.body)
     await em.flush()
-    res.status(201).json({ message: 'Repartidor creado!', data: repartidor })
+    res.status(201).json({ message: 'Tipo de producto creado!', data: tipoProducto })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -40,10 +40,10 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const repartidor = await em.getReference(Repartidor, id)
-    em.assign(repartidor, req.body)
+    const tipoProducto = await em.getReference(TipoProducto, id)
+    em.assign(tipoProducto, req.body)
     await em.flush()
-    res.status(200).json({ message: 'Repartidor actualizado!', data: repartidor })
+    res.status(200).json({ message: 'Tipo de Producto actualizado!', data: tipoProducto })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -52,9 +52,9 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const repartidor = await em.getReference(Repartidor, id)
-    await em.removeAndFlush(repartidor)
-    res.status(200).json({ message: 'Repartidor borrado!' })
+    const tipoProducto = await em.getReference(TipoProducto, id)
+    await em.removeAndFlush(tipoProducto)
+    res.status(200).json({ message: 'Tipo de Producto borrado!' })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }

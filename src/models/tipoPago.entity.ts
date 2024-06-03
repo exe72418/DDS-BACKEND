@@ -3,8 +3,9 @@ import { Pago } from "./pago.entity.js";
 
 @Entity()
 export class TipoPago {
+
   @PrimaryKey()
-  codigoTipoPago!: number;
+  id?: number
   @Property()
   nombre!: string;
   @Property()

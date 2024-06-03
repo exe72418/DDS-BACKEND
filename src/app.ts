@@ -2,6 +2,8 @@ import 'reflect-metadata'
 import express from 'express'
 import { clienteRouter } from './routes/clienteRoutes.js'
 import { repartidorRouter } from './routes/repartidorRourtes.js'
+import { tipoProductoRouter } from './routes/tipoProductoRoutes.js'
+import { tipoPagoRouter } from './routes/tipoPagoRoutes.js'
 import { orm, syncSchema } from './shared/db/orm.js'
 import { RequestContext } from '@mikro-orm/core'
 
@@ -14,7 +16,9 @@ app.use((_, res, next) => {
 })
 
 app.use('/api/v2/clientes', clienteRouter)
-app.use('/api/v1/repartidores', repartidorRouter)
+app.use('/api/v2/repartidores', repartidorRouter)
+app.use('/api/v2/tiposDeProducto', tipoProductoRouter)
+app.use('/api/v2/tiposDePago', tipoPagoRouter)
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'No se encontro la ruta' })

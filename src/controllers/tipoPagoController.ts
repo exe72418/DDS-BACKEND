@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response } from 'express'
-import { Repartidor } from '../models/repartidor.entity.js'
+import { TipoPago } from '../models/tipoPago.entity.js'
 import { orm } from '../shared/db/orm.js'
 
 const em = orm.em
 
 async function findAll(req: Request, res: Response) {
   try {
-    const repartidores = await em.find(Repartidor, {})
+    const tiposDePago = await em.find(TipoPago, {})
     res
       .status(200)
-      .json({ message: 'Se encontraron los repartidores!', data: repartidores })
+      .json({ message: 'Se encontraron los tipos De Pago!', data: tiposDePago })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -18,10 +18,10 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const RepartidorEncontrado = await em.findOneOrFail(Repartidor, { id })
+    const tipoPagoEncontrado = await em.findOneOrFail(TipoPago, { id })
     res
       .status(200)
-      .json({ message: 'se encontro el Repartidor!', data: RepartidorEncontrado })
+      .json({ message: 'se encontro el tipo de Pago!', data: tipoPagoEncontrado })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -29,9 +29,9 @@ async function findOne(req: Request, res: Response) {
 
 async function add(req: Request, res: Response) {
   try {
-    const repartidor = em.create(Repartidor, req.body)
+    const tipoPago = em.create(TipoPago, req.body)
     await em.flush()
-    res.status(201).json({ message: 'Repartidor creado!', data: repartidor })
+    res.status(201).json({ message: 'tipo de Pago creado!', data: tipoPago })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -40,10 +40,10 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const repartidor = await em.getReference(Repartidor, id)
-    em.assign(repartidor, req.body)
+    const tipoPago = await em.getReference(TipoPago, id)
+    em.assign(tipoPago, req.body)
     await em.flush()
-    res.status(200).json({ message: 'Repartidor actualizado!', data: repartidor })
+    res.status(200).json({ message: 'tipo de Pago actualizado!', data: tipoPago })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -52,9 +52,9 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const repartidor = await em.getReference(Repartidor, id)
-    await em.removeAndFlush(repartidor)
-    res.status(200).json({ message: 'Repartidor borrado!' })
+    const tipoPago = await em.getReference(TipoPago, id)
+    await em.removeAndFlush(tipoPago)
+    res.status(200).json({ message: 'tipo de Pago borrado!' })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }

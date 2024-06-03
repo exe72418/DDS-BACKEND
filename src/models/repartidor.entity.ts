@@ -3,8 +3,13 @@ import { Entrega } from "./entrega.entity.js";
 
 @Entity()
 export class Repartidor {
+
     @PrimaryKey()
+    id?: number
+    @Property()
     cuit!: number;
+    @Property()
+    apellidoNombre!: String;
     @Property()
     vehiculo!: String;
     @Property()

@@ -1,0 +1,40 @@
+### obtener todos los tipos de producto
+GET http://localhost:3000/api/v2/tiposDeProducto
+
+### crear un nuevo tipo de producto
+# @name createTipoProducto
+POST http://localhost:3000/api/v2/tiposDeProducto
+Content-Type: application/json
+
+{
+  "nombre": "Electrodomesticos"
+}
+
+### ID
+@id = {{createTipoProducto.response.body.data.id}}
+
+### obtener un tipo de producto
+GET http://localhost:3000/api/v2/tiposDeProducto/{{id}}
+
+### modificar un tipo de producto (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/tiposDeProducto/{{id}}
+Content-Type: application/json
+
+{
+  "nombre": "Electrodomesticos de cocina"
+}
+
+### POST TIPO PRODUCTO TO DELETE
+# @name createTipoProductoToDelete
+POST http://localhost:3000/api/v2/tiposDeProducto
+Content-Type: application/json
+
+{
+  "nombre": "Consolas"
+}
+
+### DELETE
+@idToDelete = {{createTipoProductoToDelete.response.body.data.id}}
+
+### borrar un tipo de producto
+DELETE http://localhost:3000/api/v2/tiposDeProducto/{{idToDelete}}

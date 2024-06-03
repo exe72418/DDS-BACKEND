@@ -4,7 +4,7 @@ import { Producto } from "./producto.entity.js";
 @Entity()
 export class TipoProducto {
     @PrimaryKey()
-    idTipoProducto!: number;
+    id?: number;
     @Property()
     nombre!: string;
 
