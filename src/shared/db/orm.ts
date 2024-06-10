@@ -4,9 +4,9 @@ import { SqlHighlighter } from '@mikro-orm/sql-highlighter'
 export const orm = await MikroORM.init({
   entities: ['dist/models/**/*.entity.js'],
   entitiesTs: ['src/models/**/*.entity.ts'],
-  dbName: 'sql10709786', // el nombre del db
+  dbName: 'Bdproducts_fullexact', // el nombre del db
   type: 'mysql',
-  clientUrl: 'mysql://sql10709786:wg73kDMdYQ@sql10.freesqldatabase.com:3306/sql10709786', // falta agregar el url correspondiente
+  clientUrl: 'mysql://Bdproducts_fullexact:82b624cdac1a3d8d0f50be375fd8ecebef363f56@617.h.filess.io:3307/Bdproducts_fullexact', // falta agregar el url correspondiente
   highlighter: new SqlHighlighter(),
   debug: true,
   schemaGenerator: {
