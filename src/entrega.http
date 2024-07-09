@@ -1,0 +1,46 @@
+### obtener todos los entregas
+GET http://localhost:3000/api/v2/entregas
+
+### crear un nuevo entrega
+# @name createEntrega
+POST http://localhost:3000/api/v2/entregas
+Content-Type: application/json
+
+{
+  "lote": 333,
+  "zona": "Centro",
+  "repartidor": 1
+}
+
+### ID
+@id = {{createEntrega.response.body.data.id}}
+
+### obtener un repartidor
+GET http://localhost:3000/api/v2/repartidores/{{id}}
+
+### modificar un repartidor (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/repartidores/{{id}}
+Content-Type: application/json
+
+{
+  "apellidoNombre": "Martinez Bruno Elias",
+  "zona": "Rosario Centro"
+}
+
+### POST REPARTIDOR TO DELETE
+# @name createRepartidorToDelete
+POST http://localhost:3000/api/v2/repartidores
+Content-Type: application/json
+
+{
+  "cuit": 23546,
+  "apellidoNombre": "Reinoso Alfredo",
+  "vehiculo": "Vento",
+  "zona": "Rosario"
+}
+
+### DELETE
+@idToDelete = {{createRepartidorToDelete.response.body.data.id}}
+
+### borrar un repartidor
+DELETE http://localhost:3000/api/v2/repartidores/{{idToDelete}}

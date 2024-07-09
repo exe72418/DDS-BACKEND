@@ -6,13 +6,14 @@ import { Pedido } from "./pedido.entity.js";
 export class Entrega {
 
     @PrimaryKey()
+    id?: number
+
+    @Property()
     fecha!: Date;
 
-    @PrimaryKey({ nullable: false })
+    @Property({ nullable: false })
     lote!: number;
 
-    // this is needed for proper type checks in `FilterQuery`
-    [PrimaryKeyProp]?: ['fecha', 'lote'];
 
     @Property({ nullable: false })
     zona!: string;
