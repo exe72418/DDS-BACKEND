@@ -13,34 +13,34 @@ Content-Type: application/json
 }
 
 ### ID
-@id = {{createEntrega.response.body.data.id}}
+@id = 1
+###{{createEntrega.response.body.data.id}}
 
 ### obtener un repartidor
-GET http://localhost:3000/api/v2/repartidores/{{id}}
+GET http://localhost:3000/api/v2/entregas/{{id}}
 
 ### modificar un repartidor (PUT - recurso completo e idempotente)
-PUT http://localhost:3000/api/v2/repartidores/{{id}}
+PUT http://localhost:3000/api/v2/entregas/{{id}}
 Content-Type: application/json
 
 {
-  "apellidoNombre": "Martinez Bruno Elias",
-  "zona": "Rosario Centro"
+  "lote": 555,
+  "zona": "Noroeste"
 }
 
-### POST REPARTIDOR TO DELETE
-# @name createRepartidorToDelete
-POST http://localhost:3000/api/v2/repartidores
+### POST ENTREGA TO DELETE
+# @name createEntregaToDelete
+POST http://localhost:3000/api/v2/entregas
 Content-Type: application/json
 
 {
-  "cuit": 23546,
-  "apellidoNombre": "Reinoso Alfredo",
-  "vehiculo": "Vento",
-  "zona": "Rosario"
+  "lote": 444,
+  "zona": "Sureste",
+  "repartidor": 1
 }
 
 ### DELETE
-@idToDelete = {{createRepartidorToDelete.response.body.data.id}}
+@idToDelete = {{createEntregaToDelete.response.body.data.id}}
 
-### borrar un repartidor
-DELETE http://localhost:3000/api/v2/repartidores/{{idToDelete}}
+### borrar una entrega
+DELETE http://localhost:3000/api/v2/entregas/{{idToDelete}}
