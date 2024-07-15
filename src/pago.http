@@ -1,0 +1,18 @@
+
+
+### obtener todos los pagos
+GET http://localhost:3000/api/v2/pago
+
+### crear un nuevo Pago
+# @name createPago
+POST http://localhost:3000/api/v2/Pago
+Content-Type: application/json
+
+{
+  "fecha":"01-01-2024",
+  "tipoPago":"2",
+  "pedido":"1"
+}
+
+
+

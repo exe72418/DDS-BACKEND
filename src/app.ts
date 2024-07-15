@@ -7,6 +7,7 @@ import { tipoPagoRouter } from './routes/tipoPagoRoutes.js'
 import { orm, syncSchema } from './shared/db/orm.js'
 import { RequestContext } from '@mikro-orm/core'
 import { entregaRouter } from './routes/entregaRoutes.js'
+import { pagoRouter } from './routes/pagoRoutes.js'
 
 const app = express()
 app.use(express.json())
@@ -21,6 +22,7 @@ app.use('/api/v2/repartidores', repartidorRouter)
 app.use('/api/v2/tiposDeProducto', tipoProductoRouter)
 app.use('/api/v2/tiposDePago', tipoPagoRouter)
 app.use('/api/v2/entregas', entregaRouter)
+app.use('/api/v2/pago', pagoRouter)
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'No se encontro la ruta' })
