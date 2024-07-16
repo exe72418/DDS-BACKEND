@@ -7,7 +7,7 @@ import { Cascade, Collection, Entity, ManyToOne, OneToMany, PrimaryKey, Property
 @Entity()
 export class Pedido {
     @PrimaryKey()
-    nroPedido!: number;
+    id?: number
 
     @Property()
     fecha!: Date;
@@ -15,7 +15,7 @@ export class Pedido {
     @Property()
     total!: number;
 
-    @ManyToOne(() => Cliente, { nullable: true})
+    @ManyToOne(() => Cliente, { nullable: true })
     cliente!: Ref<Cliente>;
 
     @ManyToOne({ entity: () => Entrega, nullable: true })

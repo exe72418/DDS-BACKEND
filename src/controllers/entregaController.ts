@@ -18,7 +18,7 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const EntregaEncontrada = await em.findOneOrFail(Entrega, { id },{populate:['repartidor']})
+    const EntregaEncontrada = await em.findOneOrFail(Entrega, { id }, { populate: ['repartidor'] })
     res
       .status(200)
       .json({ message: 'se encontro la entrega!', data: EntregaEncontrada })
@@ -44,7 +44,7 @@ async function add(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
-    const entregaToUpdate = await em.findOneOrFail(Entrega, {id})
+    const entregaToUpdate = await em.findOneOrFail(Entrega, { id })
     em.assign(entregaToUpdate, req.body)
     await em.flush()
     res.status(200).json({ message: 'Entrega actualizada!', data: entregaToUpdate })

@@ -5,7 +5,7 @@ import { LineaDeProducto } from "./lineaDeProducto.entity.js";
 @Entity()
 export class Producto {
     @PrimaryKey()
-    codigoProducto?: number;
+    id?: number
     @Property()
     descripcion!: string;
     @Property()
