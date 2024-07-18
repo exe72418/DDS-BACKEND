@@ -26,50 +26,60 @@ async function add(req: Request, res: Response) {
 }
 
 
-
 async function findOne(req: Request, res: Response) {
   try {
-      const idPago = Number.parseInt(req.params.idPago);
-      const pagoEncontrado = await em.findOneOrFail(Pago, { idPago });
-      res.status(200).json({ message: 'Se encontró el pago!', data: pagoEncontrado });
-  } catch (error: any) {
-      res.status(500).json({ message: error.message });
-  }
-}
-
-
-async function update(req: Request, res: Response) {
-  try {
-    const idPago = Number.parseInt(req.params.idPago);
-    const pago = await em.findOneOrFail(Pago, { idPago });
-    em.assign(Pago, req.body)
-    await em.flush()
-    res.status(200).json({ message: 'Pago actualizado!', data: pago })
+    const id = Number.parseInt(req.params.id)
+    const pagoEncontrado = await em.findOneOrFail(Pago, { id: id }, { populate: ['tipoPago'] });
+    res
+      .status(200)
+      .json({ message: 'se encontro el pago!', data: pagoEncontrado })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
 }
 
 
+async function update(req: Request, res: Response) {
+  try {
+    const id = Number.parseInt(req.params.id);
+    
+    if (isNaN(id)) {
+      return res.status(400).json({ message: 'Invalid id parameter' });
+    }
+
+    const pagoToUpdate = await em.findOneOrFail(Pago, { id: id }, { populate: ['tipoPago'] });
+
+    em.assign(pagoToUpdate, req.body);
+    await em.flush();
+    
+    res.status(200).json({ message: 'Pago actualizado!', data: pagoToUpdate });
+  } catch (error: any) {
+    if (error.name === 'EntityNotFoundError') {
+      return res.status(404).json({ message: 'Pago not found' });
+    }
+
+    res.status(500).json({ message: error.message });
+  }
+}
+
 async function remove(req: Request, res: Response) {
   try {
-      const idPago = Number.parseInt(req.params.idPago);
-  
-      
-      // Encuentra la referencia del pago a eliminar
-      const pago = await em.findOneOrFail(Pago, { idPago });
-      
-      // Elimina el pago
-      await em.removeAndFlush(pago);
+    const idPago = Number.parseInt(req.params.idPago, 10);
 
-      res.status(200).json({ message: 'Pago borrado!' });
+    if (isNaN(idPago)) {
+      return res.status(400).json({ message: 'Invalid idPago parameter' });
+    }
+
+    // Delete by ID directly
+    await em.nativeDelete(Pago, idPago);
+
+    res.status(200).json({ message: 'Pago borrado!' });
   } catch (error: any) {
-      res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 }
 
 
 
-
-export { findAll, add, findOne, remove,update }
+export { findAll, add, findOne,update,remove }
 
