@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import express from 'express'
+import cors from 'cors'
 import { clienteRouter } from './routes/clienteRoutes.js'
 import { repartidorRouter } from './routes/repartidorRourtes.js'
 import { tipoProductoRouter } from './routes/tipoProductoRoutes.js'
@@ -10,13 +11,18 @@ import { entregaRouter } from './routes/entregaRoutes.js'
 import { pagoRouter } from './routes/pagoRoutes.js'
 import { productoRouter } from './routes/productoRoutes.js'
 
+
 const app = express()
 app.use(express.json())
-
-
 app.use((_, res, next) => {
   RequestContext.create(orm.em, next)
 })
+app.use(cors());
+const allowedOrigins = ['http://localhost:4200'];
+const corsOptions = {
+    origin: allowedOrigins
+};
+app.use(cors(corsOptions));
 
 app.use('/api/v2/clientes', clienteRouter)
 app.use('/api/v2/repartidores', repartidorRouter)
