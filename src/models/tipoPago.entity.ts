@@ -12,7 +12,7 @@ export class TipoPago {
   descripcion!: string;
 
   @OneToMany(() => Pago, (pago) => pago.tipoPago, { cascade: [Cascade.ALL], })
-  tiposPagos = new Collection<Pago>(this)
+  pagos = new Collection<Pago>(this)
 
   /*constructor(
     nombre: string,

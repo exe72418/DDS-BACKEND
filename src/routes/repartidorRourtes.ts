@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {  findAll, findOne, add, update, remove } from '../controllers/repartidorController.js';
+import { findAll, findOne, add, update, remove } from '../controllers/repartidorController.js';
 
 
 export const repartidorRouter = Router()

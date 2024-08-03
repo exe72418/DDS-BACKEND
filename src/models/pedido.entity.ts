@@ -7,7 +7,7 @@ import { Cascade, Collection, Entity, ManyToOne, OneToMany, PrimaryKey, Property
 @Entity()
 export class Pedido {
     @PrimaryKey()
-    id?: number
+    nroPedido?: number
 
     @Property()
     fecha!: Date;

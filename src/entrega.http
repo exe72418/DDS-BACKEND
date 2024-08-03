@@ -16,10 +16,10 @@ Content-Type: application/json
 @id = 1
 ###{{createEntrega.response.body.data.id}}
 
-### obtener un repartidor
+### obtener una entrega
 GET http://localhost:3000/api/v2/entregas/{{id}}
 
-### modificar un repartidor (PUT - recurso completo e idempotente)
+### modificar una entrega (PUT - recurso completo e idempotente)
 PUT http://localhost:3000/api/v2/entregas/{{id}}
 Content-Type: application/json
 

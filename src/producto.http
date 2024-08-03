@@ -9,17 +9,18 @@ Content-Type: application/json
 {
   "descripcion": "Leche",
   "stock": 1000,
-  "precio": 1600
+  "precio": 1600,
+  "tipoProducto":1
 }
 
 ### ID
-@id = {{createProducto.response.body.data.id}}
+@codigo = {{createProducto.response.body.data.codigo}}
 
 ### obtener un producto
-GET http://localhost:3000/api/v2/producto/{{id}}
+GET http://localhost:3000/api/v2/producto/{{codigo}}
 
 ### modificar un producto (PUT - recurso completo e idempotente)
-PUT http://localhost:3000/api/v2/producto/{{id}}
+PUT http://localhost:3000/api/v2/producto/{{codigo}}
 Content-Type: application/json
 
 {
@@ -37,7 +38,8 @@ Content-Type: application/json
 {
   "descripcion": "Carbon 5kg",
   "stock": 1500,
-  "precio": 3500
+  "precio": 3500,
+  "tipoProducto":2
 }
 
 

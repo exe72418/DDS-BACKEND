@@ -6,7 +6,7 @@ const em = orm.em
 
 async function findAll(req: Request, res: Response) {
   try {
-    const pago = await em.find(Pago, {},{populate:['tipoPago']})
+    const pago = await em.find(Pago, {}, { populate: ['tipoPago'] })
     res
       .status(200)
       .json({ message: 'Se encontraron los pagos!', data: pago })
@@ -18,6 +18,8 @@ async function findAll(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
   try {
     const pago = em.create(Pago, req.body)
+    const nuevaFecha = new Date()
+    pago.fecha = nuevaFecha
     await em.flush()
     res.status(201).json({ message: 'Pago creado!', data: pago })
   } catch (error: any) {
@@ -28,13 +30,11 @@ async function add(req: Request, res: Response) {
 
 async function findOne(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
-    const pagoEncontrado = await em.findOneOrFail(Pago, { id: id }, { populate: ['tipoPago'] });
-    res
-      .status(200)
-      .json({ message: 'se encontro el pago!', data: pagoEncontrado })
+    const id = Number.parseInt(req.params.id);
+    const pagoEncontrado = await em.findOneOrFail(Pago, { id }, { populate: ['tipoPago'] });
+    res.status(200).json({ message: 'Se encontró el pago!', data: pagoEncontrado });
   } catch (error: any) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 }
 
@@ -42,7 +42,7 @@ async function findOne(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    
+
     if (isNaN(id)) {
       return res.status(400).json({ message: 'Invalid id parameter' });
     }
@@ -51,7 +51,7 @@ async function update(req: Request, res: Response) {
 
     em.assign(pagoToUpdate, req.body);
     await em.flush();
-    
+
     res.status(200).json({ message: 'Pago actualizado!', data: pagoToUpdate });
   } catch (error: any) {
     if (error.name === 'EntityNotFoundError') {
@@ -81,5 +81,5 @@ async function remove(req: Request, res: Response) {
 
 
 
-export { findAll, add, findOne,update,remove }
+export { findAll, add, findOne, update, remove }
 

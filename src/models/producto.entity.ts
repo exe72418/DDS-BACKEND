@@ -5,14 +5,14 @@ import { LineaDeProducto } from "./lineaDeProducto.entity.js";
 @Entity()
 export class Producto {
     @PrimaryKey()
-    id?: number
+    codigo?: number
     @Property()
     descripcion!: string;
     @Property()
     stock!: number;
     @Property()
     precio!: number;
-    @ManyToOne({ entity: () => TipoProducto, nullable: true })
+    @ManyToOne({ entity: () => TipoProducto, nullable: false })
     tipoProducto!: Rel<TipoProducto>;
 
     @OneToMany(() => LineaDeProducto, (lineaDeProducto) => lineaDeProducto.producto, { cascade: [Cascade.ALL], })

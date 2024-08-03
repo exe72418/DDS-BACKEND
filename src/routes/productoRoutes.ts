@@ -4,8 +4,8 @@ import { findAll, findOne, add, update, remove } from '../controllers/productoCo
 export const productoRouter = Router()
 
 productoRouter.get('/', findAll)
-productoRouter.get('/:id', findOne)
+productoRouter.get('/:codigo', findOne)
 productoRouter.post('/', add)
-productoRouter.put('/:id', update)
-productoRouter.patch('/:id', update)
-productoRouter.delete('/:id', remove)
+productoRouter.put('/:codigo', update)
+productoRouter.patch('/:codigo', update)
+productoRouter.delete('/:codigo', remove)

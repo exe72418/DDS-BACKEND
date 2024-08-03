@@ -18,8 +18,8 @@ async function findAll(req: Request, res: Response) {
 
 async function findOne(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
-    const productoEncontrado = await em.findOneOrFail(Producto, { id }, { populate: ['tipoProducto'] })
+    const codigo = Number.parseInt(req.params.codigo)
+    const productoEncontrado = await em.findOneOrFail(Producto, { codigo }, { populate: ['tipoProducto'] })
     res
       .status(200)
       .json({ message: 'se encontro el producto!', data: productoEncontrado })
@@ -42,8 +42,8 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
-    const productoToUpdate = await em.findOneOrFail(Producto, { id })
+    const codigo = Number.parseInt(req.params.codigo)
+    const productoToUpdate = await em.findOneOrFail(Producto, { codigo })
     em.assign(productoToUpdate, req.body)
     await em.flush()
     res.status(200).json({ message: 'Producto actualizado!', data: productoToUpdate })
@@ -54,8 +54,8 @@ async function update(req: Request, res: Response) {
 
 async function remove(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
-    const producto = await em.getReference(Producto, id)
+    const codigo = Number.parseInt(req.params.codigo)
+    const producto = await em.findOneOrFail(Producto, { codigo })
     await em.removeAndFlush(producto)
     res.status(200).json({ message: 'Producto borrado!' })
   } catch (error: any) {
