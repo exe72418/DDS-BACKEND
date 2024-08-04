@@ -7,13 +7,12 @@ POST http://localhost:3000/api/v2/pago
 Content-Type: application/json
 
 {
-  "tipoPago":"1",
-  "pedido":"1"
+  "tipoPago":1,
+  "pedido":1
 }
 
 ### ID
-@id = 1
-###{{createPago.response.body.data.id}}
+@id = {{createPago.response.body.data.id}}
 
 ### obtener un pago
 GET http://localhost:3000/api/v2/pago/{{id}}
@@ -23,7 +22,7 @@ PUT http://localhost:3000/api/v2/pago/{{id}}
 Content-Type: application/json
 
 {
-  "tipoPago":"2",
+  "tipoPago":2
 }
 
 ### POST PAGO TO DELETE
@@ -32,8 +31,8 @@ POST http://localhost:3000/api/v2/pago
 Content-Type: application/json
 
 {
-  "tipoPago":"2",
-  "pedido":"2"
+  "tipoPago":2,
+  "pedido":2
 }
 
 ### DELETE

@@ -5,7 +5,7 @@ import { Pedido } from "./pedido.entity.js";
 @Entity()
 export class Pago {
     @PrimaryKey()
-    id!: number;
+    id?: number;
 
     @Property()
     fecha!: Date;

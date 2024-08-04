@@ -1,0 +1,48 @@
+### obtener todas las lineas
+GET http://localhost:3000/api/v2/lineas
+
+### crear un nueva linea
+# @name createLinea
+POST http://localhost:3000/api/v2/lineas
+Content-Type: application/json
+
+{
+  "producto.codigo": 1,
+  "pedido.{{nroPedido}}": 1,
+  "cantidad": 5,
+  "subtotal": 500
+}
+
+### ID
+@nroPedido = {{createLinea.response.body.data.nroPedido}}
+
+### obtener una linea
+GET http://localhost:3000/api/v2/lineas/{{nroPedido}}
+
+### modificar una linea (PUT - recurso completo e idempotente)
+PUT http://localhost:3000/api/v2/lineas/{{nroPedido}}
+Content-Type: application/json
+
+{
+  "total": 125000,
+  "cliente": 2
+}
+
+### POST LINEA TO DELETE
+# @name createLineaToDelete
+POST http://localhost:3000/api/v2/lineas
+Content-Type: application/json
+
+
+{
+  "total": 100000,
+  "cliente": 1,
+  "entrega": 1
+}
+
+
+### DELETE
+@idToDelete = {{createLineaToDelete.response.body.data.nroPedido}}
+
+### borrar un pedido
+DELETE http://localhost:3000/api/v2/lineas/{{idToDelete}}

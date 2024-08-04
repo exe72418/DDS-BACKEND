@@ -10,6 +10,8 @@ import { RequestContext } from '@mikro-orm/core'
 import { entregaRouter } from './routes/entregaRoutes.js'
 import { pagoRouter } from './routes/pagoRoutes.js'
 import { productoRouter } from './routes/productoRoutes.js'
+import { pedidoRouter } from './routes/pedidoRoutes.js'
+import { lineasRouter } from './routes/lineaProductoRoutes.js'
 
 
 const app = express()
@@ -20,7 +22,7 @@ app.use((_, res, next) => {
 app.use(cors());
 const allowedOrigins = ['http://localhost:4200'];
 const corsOptions = {
-    origin: allowedOrigins
+  origin: allowedOrigins
 };
 app.use(cors(corsOptions));
 
@@ -31,6 +33,8 @@ app.use('/api/v2/tiposDePago', tipoPagoRouter)
 app.use('/api/v2/entregas', entregaRouter)
 app.use('/api/v2/pago', pagoRouter)
 app.use('/api/v2/producto', productoRouter)
+app.use('/api/v2/pedido', pedidoRouter)
+app.use('/api/v2/lineas', lineasRouter)
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'No se encontro la ruta' })
