@@ -6,7 +6,7 @@ const em = orm.em
 
 async function findAll(req: Request, res: Response) {
   try {
-    const pedidos = await em.find(Pedido, {}, { populate: ['cliente', 'lineas', 'pagos', 'entrega'] })
+    const pedidos = await em.find(Pedido, {}, { populate: ['cliente', 'lineas', 'pago', 'entrega'] })
     res
       .status(200)
       .json({ message: 'Se encontraron los pedidos!', data: pedidos })
@@ -19,7 +19,7 @@ async function findAll(req: Request, res: Response) {
 async function findOne(req: Request, res: Response) {
   try {
     const nroPedido = Number.parseInt(req.params.nroPedido)
-    const pedidoEncontrado = await em.findOneOrFail(Pedido, { nroPedido }, { populate: ['cliente', 'lineas', 'pagos', 'entrega'] })
+    const pedidoEncontrado = await em.findOneOrFail(Pedido, { nroPedido }, { populate: ['cliente', 'lineas', 'pago', 'entrega'] })
     res
       .status(200)
       .json({ message: 'se encontro el pedido!', data: pedidoEncontrado })

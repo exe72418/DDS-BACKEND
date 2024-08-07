@@ -4,10 +4,13 @@ import { Pedido } from "./pedido.entity.js";
 @Entity()
 export class LineaDeProducto {
 
-    @ManyToOne({ entity: () => Producto, primary: true, nullable: false })
+    @PrimaryKey()
+    id?: number
+
+    @ManyToOne(() => Producto, { nullable: false })
     producto!: Rel<Producto>;
 
-    @ManyToOne(() => Pedido, { primary: true, nullable: false })
+    @ManyToOne(() => Pedido, { nullable: false })
     pedido!: Rel<Pedido>;
 
     @Property()

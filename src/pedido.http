@@ -8,8 +8,8 @@ Content-Type: application/json
 
 {
   "total": 120000,
-  "cliente": 1,
-  "entrega": 1
+  "cliente": 1
+
 }
 
 ### ID
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 {
   "total": 125000,
-  "cliente": 2
+  "entrega": 1
 }
 
 ### POST PEDIDO TO DELETE
@@ -35,8 +35,7 @@ Content-Type: application/json
 
 {
   "total": 100000,
-  "cliente": 1,
-  "entrega": 1
+  "cliente": 2
 }
 
 

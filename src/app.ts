@@ -34,7 +34,7 @@ app.use('/api/v2/entregas', entregaRouter)
 app.use('/api/v2/pago', pagoRouter)
 app.use('/api/v2/producto', productoRouter)
 app.use('/api/v2/pedido', pedidoRouter)
-app.use('/api/v2/lineas', lineasRouter)
+app.use('/api/v2/lineasDeProducto', lineasRouter)
 
 app.use((_, res) => {
   return res.status(404).send({ message: 'No se encontro la ruta' })

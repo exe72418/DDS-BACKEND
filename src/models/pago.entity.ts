@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, PrimaryKey, Property, Rel } from "@mikro-orm/core";
+import { Entity, ManyToOne, PrimaryKey, Property, Rel, OneToOne } from "@mikro-orm/core";
 import { TipoPago } from "./tipoPago.entity.js";
 import { Pedido } from "./pedido.entity.js";
 
@@ -10,10 +10,10 @@ export class Pago {
     @Property()
     fecha!: Date;
 
-    @ManyToOne({ entity: () => TipoPago, nullable: true })
+    @ManyToOne({ entity: () => TipoPago, nullable: false })
     tipoPago!: Rel<TipoPago>;
 
-    @ManyToOne(() => Pedido, { nullable: false })
+    @OneToOne(() => Pedido, { nullable: false })
     pedido!: Rel<Pedido>;
 
     /*constructor(

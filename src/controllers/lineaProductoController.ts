@@ -6,7 +6,7 @@ const em = orm.em
 
 async function findAll(req: Request, res: Response) {
   try {
-    const lineas = await em.find(LineaDeProducto, {}, { populate: ['producto'] })
+    const lineas = await em.find(LineaDeProducto, {})
     res
       .status(200)
       .json({ message: 'Se encontraron las lineas!', data: lineas })
@@ -15,21 +15,17 @@ async function findAll(req: Request, res: Response) {
   }
 }
 
-/*
 async function findOne(req: Request, res: Response) {
   try {
-    const pedido = req.params.pedido
-    const nroPedido= pedido.nroPedido
-    //const producto = Number.parseInt(req.params.producto)
-    const lineaEncontrada = await em.findOneOrFail(LineaDeProducto, { nroPedido });
+    const id = Number.parseInt(req.params.id)
+    const lineaEncontrada = await em.findOneOrFail(LineaDeProducto, { id }, { populate: ['producto'] })
     res
       .status(200)
       .json({ message: 'se encontro la linea!', data: lineaEncontrada })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
-}*/
-
+}
 
 async function add(req: Request, res: Response) {
   try {
@@ -41,14 +37,14 @@ async function add(req: Request, res: Response) {
   }
 }
 
-/*
+
 async function update(req: Request, res: Response) {
   try {
-    const codigo = Number.parseInt(req.params.codigo)
-    const productoToUpdate = await em.findOneOrFail(Producto, { codigo })
-    em.assign(productoToUpdate, req.body)
+    const id = Number.parseInt(req.params.id)
+    const lineaToUpdate = await em.findOneOrFail(LineaDeProducto, { id })
+    em.assign(lineaToUpdate, req.body)
     await em.flush()
-    res.status(200).json({ message: 'Producto actualizado!', data: productoToUpdate })
+    res.status(200).json({ message: 'Linea actualizada!', data: lineaToUpdate })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -56,15 +52,15 @@ async function update(req: Request, res: Response) {
 
 async function remove(req: Request, res: Response) {
   try {
-    const codigo = Number.parseInt(req.params.codigo)
-    const producto = await em.findOneOrFail(Producto, { codigo })
-    await em.removeAndFlush(producto)
-    res.status(200).json({ message: 'Producto borrado!' })
+    const id = Number.parseInt(req.params.id)
+    const linea = await em.findOneOrFail(LineaDeProducto, { id })
+    await em.removeAndFlush(linea)
+    res.status(200).json({ message: 'Linea borrada!' })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
-}*/
+}
 
 export {
-  findAll, add//, findOne,update,remove
+  findAll, add, findOne, update, remove
 }

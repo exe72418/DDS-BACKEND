@@ -14,11 +14,10 @@ export class Entrega {
     @Property({ nullable: false })
     lote!: number;
 
-
     @Property({ nullable: false })
     zona!: string;
 
-    @ManyToOne({ entity: () => Repartidor, nullable: true })
+    @ManyToOne({ entity: () => Repartidor, nullable: false })
     repartidor!: Rel<Repartidor>;
 
     @OneToMany(() => Pedido, (pedido) => pedido.entrega, { cascade: [Cascade.ALL], })
