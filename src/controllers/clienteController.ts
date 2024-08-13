@@ -39,7 +39,8 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
+    const id = Number.parseInt(req.body.id)
+    console.log(req.body)
     const cliente = await em.getReference(Cliente, id)
     em.assign(cliente, req.body)
     await em.flush()

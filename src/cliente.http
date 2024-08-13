@@ -22,12 +22,13 @@ Content-Type: application/json
 GET http://localhost:3000/api/v2/clientes/{{id}}
 
 ### modificar un cliente (PUT - recurso completo e idempotente)
-PUT http://localhost:3000/api/v2/clientes/{{id}}
+PUT http://localhost:3000/api/v2/clientes
 Content-Type: application/json
 
 {
+  "id":1,
   "cuit": 6789,
-  "apellidoNombre": "Lionel Messi",
+  "apellidoNombre": "Lionel Messi Bruno Goleado",
   "telefono": 34135135,
   "email": "Lionel.Messi@gmail.com",
   "domicilio": "Argentina 456"
