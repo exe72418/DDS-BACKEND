@@ -25,6 +25,9 @@ export class Cliente {
   @Property()
   zona!: string;
 
+  @Property()
+  disponible:boolean = true;
+
   @OneToMany(() => Pedido, (pedido) => pedido.cliente, { cascade: [Cascade.ALL], joinColumn: 'nroPedido', inverseJoinColumn: 'cuit' })
   pedidos = new Collection<Pedido>(this);
 

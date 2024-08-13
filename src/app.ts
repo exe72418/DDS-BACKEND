@@ -44,4 +44,4 @@ app.use((_, res) => {
 
 app.listen(3000, () => {
   console.log("Server corriendo en la ruta http://localhost:3000/")
-})
+}) 

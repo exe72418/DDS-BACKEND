@@ -30,6 +30,7 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
   try {
     const cliente = em.create(Cliente, req.body)
+    cliente.disponible= true;
     await em.flush()
     res.status(201).json({ message: 'Cliente creado!', data: cliente })
   } catch (error: any) {
@@ -54,8 +55,14 @@ async function remove(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id)
     const cliente = await em.getReference(Cliente, id)
-    await em.removeAndFlush(cliente)
-    res.status(200).json({ message: 'cliente borrado!' })
+    
+    const clienteNoDisponible = cliente
+    clienteNoDisponible.disponible = false;
+
+    em.assign(cliente,clienteNoDisponible)
+
+    await em.flush()
+    res.status(200).json({ message: 'cliente dado de baja!' })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
