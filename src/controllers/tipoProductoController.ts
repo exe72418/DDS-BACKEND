@@ -39,7 +39,7 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
+    const id = Number.parseInt(req.body.id)
     const tipoProducto = await em.getReference(TipoProducto, id)
     em.assign(tipoProducto, req.body)
     await em.flush()
