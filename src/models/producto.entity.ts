@@ -12,7 +12,7 @@ export class Producto {
     stock!: number;
     @Property()
     precio!: number;
-    @ManyToOne({ entity: () => TipoProducto, nullable: false })
+    @ManyToOne({ entity: () => TipoProducto, nullable: false ,  cascade: [Cascade.ALL], })
     tipoProducto!: Rel<TipoProducto>;
 
     @OneToMany(() => LineaDeProducto, (lineaDeProducto) => lineaDeProducto.producto, { cascade: [Cascade.ALL], })

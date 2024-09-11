@@ -39,7 +39,7 @@ Content-Type: application/json
   "descripcion": "Carbon 5kg",
   "stock": 1500,
   "precio": 3500,
-  "tipoProducto":2
+  "tipoProducto":1
 }
 
 

@@ -6,10 +6,10 @@ const em = orm.em
 
 async function findAll(req: Request, res: Response) {
   try {
-    const productos = await em.find(Producto, {}, { populate: ['tipoProducto'] })
+    const productos = await em.find(Producto, {})
     res
       .status(200)
-      .json({ message: 'Se encontraron los productos!', data: productos })
+      .json({productos: productos })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }
@@ -31,7 +31,7 @@ async function findOne(req: Request, res: Response) {
 
 async function add(req: Request, res: Response) {
   try {
-    const producto = em.create(Producto, req.body)
+    let producto = em.create(Producto, req.body)
     await em.flush()
     res.status(201).json({ message: 'Producto creado!', data: producto })
   } catch (error: any) {
@@ -42,7 +42,7 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   try {
-    const codigo = Number.parseInt(req.params.codigo)
+    const codigo = Number.parseInt(req.body.codigo)
     const productoToUpdate = await em.findOneOrFail(Producto, { codigo })
     em.assign(productoToUpdate, req.body)
     await em.flush()
