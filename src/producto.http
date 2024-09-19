@@ -36,10 +36,13 @@ Content-Type: application/json
 
 
 {
-  "descripcion": "Carbon 5kg",
-  "stock": 1500,
-  "precio": 3500,
-  "tipoProducto":1
+  "descripcion": "Producto A",
+  "stock": 10,
+  "precio": 100,
+  "tipoProducto": {
+    "id": 1,
+    "nombre":"HIPHONE"
+  }
 }
 
 
