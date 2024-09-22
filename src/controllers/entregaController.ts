@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { Entrega } from '../models/entrega.entity.js'
 import { orm } from '../shared/db/orm.js'
+import { Repartidor } from '../models/repartidor.entity.js'
 
 const em = orm.em
 
@@ -30,13 +31,23 @@ async function findOne(req: Request, res: Response) {
 async function add(req: Request, res: Response) {
 
   try {
-    const entrega = em.create(Entrega, req.body)
-    const nuevaFecha = new Date()
-    entrega.fecha = nuevaFecha
-    await em.flush()
-    res.status(201).json({ message: 'Entrega creada!', data: entrega })
+    const { repartidor, ...entregaData } = req.body;
+    let repartidorEntity;
+
+    if (repartidor?.id) {
+      repartidorEntity = await em.findOne(Repartidor, repartidor.id);
+      if (!repartidorEntity) {
+        return res.status(404).json({ message: 'Repartidor no encontrado' });
+      }
+    } else {
+      repartidorEntity = em.create(Repartidor, repartidor);
+    }
+
+    let entrega = em.create(Repartidor, { ...entregaData, repartidor: repartidorEntity });
+    await em.persistAndFlush(entrega);
+    res.status(201).json({ message: 'Entrega creado!', data: entrega });
   } catch (error: any) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 
 }
