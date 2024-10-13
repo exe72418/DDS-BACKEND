@@ -29,7 +29,7 @@ async function findOne(req: Request, res: Response) {
 }
 
 async function add(req: Request, res: Response) {
-
+  console.log(req.body)
   try {
     const { repartidor, ...entregaData } = req.body;
     let repartidorEntity;
@@ -40,10 +40,15 @@ async function add(req: Request, res: Response) {
         return res.status(404).json({ message: 'Repartidor no encontrado' });
       }
     } else {
-      repartidorEntity = em.create(Repartidor, repartidor);
+      repartidorEntity = em.create(Repartidor, {
+        cuit: repartidor.cuit,
+        apellidoNombre: repartidor.apellidoNombre,
+        vehiculo: repartidor.vehiculo,
+        zona: repartidor.zona,
+      });
     }
 
-    let entrega = em.create(Repartidor, { ...entregaData, repartidor: repartidorEntity });
+    let entrega = em.create(Entrega, { ...entregaData, repartidor: repartidorEntity });
     await em.persistAndFlush(entrega);
     res.status(201).json({ message: 'Entrega creado!', data: entrega });
   } catch (error: any) {
