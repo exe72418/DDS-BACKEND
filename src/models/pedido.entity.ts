@@ -27,7 +27,7 @@ export class Pedido {
     @OneToMany(() => LineaDeProducto, lineaDeProducto => lineaDeProducto.pedido, { mappedBy: lineaDeProducto => lineaDeProducto.pedido, cascade: [Cascade.ALL] })
     lineas = new Collection<LineaDeProducto>(this);
 
-    constructor(
+    /* constructor(
         fecha: Date,
         total: number,
         cliente: Ref<Cliente>,
@@ -41,5 +41,5 @@ export class Pedido {
         this.entrega = entrega;
         this.pago = pago;
         this.lineas = lineas
-    }
+    } */
 }

@@ -15,7 +15,7 @@ export class Producto {
     @ManyToOne({ 
             entity: () => TipoProducto, 
             nullable: false , 
-            cascade: [Cascade.ALL], 
+            cascade: [Cascade.MERGE], 
             })
     tipoProducto!: Rel<TipoProducto>;
 
